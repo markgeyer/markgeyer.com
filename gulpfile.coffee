@@ -1,12 +1,8 @@
 gulp = require 'gulp'
 fs = require 'fs'
-concat = require 'gulp-concat'
 minifycss = require 'gulp-minify-css'
 autoprefixer = require 'gulp-autoprefixer'
-notify = require 'gulp-notify'
-rename = require 'gulp-rename'
 sass = require 'gulp-sass'
-uglify = require 'gulp-uglify'
 browserSync = require 'browser-sync'
 
 path =
@@ -41,7 +37,7 @@ gulp.task 'img', ->
 gulp.task 'sass', ->
   gulp.src(path.sass)
   .pipe sass(includePaths: ['scss'])
-  .pipe autoprefixer("last 2 version", "> 1%", "ie 8", "ie 9", "ios 6", "android 4")
+  .pipe(autoprefixer("last 1 version", "> 1%", "ie 10", "iOS 7", "Android 4", cascade: true))
   .pipe minifycss()
   .pipe gulp.dest(path.css)
   .pipe browserSync.reload(stream: true)
