@@ -1,7 +1,7 @@
 {
   "name": "markgeyer.com",
   "version": "1.0.0",
-  "description": "Site of markgeyer.com",
+  "description": "Personal site",
   "repository": {
     "type": "git",
     "url": "https://github.com/markgeyer/markgeyer.com"
@@ -10,16 +10,12 @@
   "author": "Mark Geyer",
   "license": "ISC",
   "dependencies": {
-    "browser-sync": "^0.9.1",
-    "coffee-script": "^1.7.1",
-    "gulp": "^3.7.0",
-    "gulp-autoprefixer": "0.0.7",
-    "gulp-concat": "^2.2.0",
-    "gulp-minify-css": "^0.3.4",
-    "gulp-notify": "^1.3.0",
-    "gulp-rename": "^1.2.0",
-    "gulp-sass": "^0.7.1",
-    "gulp-uglify": "^0.3.0"
+    "browser-sync": "1.3.2",
+    "coffee-script": "1.7.1",
+    "gulp": "3.8.7",
+    "gulp-autoprefixer": "0.0.8",
+    "gulp-minify-css": "0.3.7",
+    "gulp-sass": "0.7.2"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
