@@ -6,7 +6,7 @@ body {
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
 
-  @media #{$break-small} {
+  @media #{$break-576} {
     font-size: 112.5%;
   }
 }
@@ -39,7 +39,7 @@ a, a:visited {
   margin: 0 auto;
   padding: 2em 1em;
 
-  @media #{$break-small} {
+  @media #{$break-576} {
     padding: 3em;
   }
 
@@ -75,13 +75,17 @@ a, a:visited {
     text-align: center;
     margin-bottom: 1em;
 
-    @media #{$break-small} {
+    @media #{$break-480} {
       display: inline-block;
-      margin: 0 1em 0 0;
+      margin-right: 1em;
     }
-
+    @media #{$break-768} {
+      margin-right: 1.5em;
+    }
     &:last-child {
-      @media #{$break-small} {
+      margin-bottom: 0;
+
+      @media #{$break-480} {
         margin-right: 0;
       }
     }
@@ -128,7 +132,7 @@ a, a:visited {
       animation: down 40s infinite $slow-in-fast-out;
     }
 
-    @media #{$break-small} {
+    @media #{$break-576} {
       height: 138px;
     }
   }
