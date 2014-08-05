@@ -1,1 +1,3 @@
-$breakPhone:      31em;
+$break-small: "screen and (min-width: 36em)";
+
+$slow-in-fast-out: cubic-bezier(1,0,1,0);
