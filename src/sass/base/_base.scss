@@ -5,6 +5,10 @@ body {
   color: #6d6d6d;
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
+
+  @media #{$break-small} {
+    font-size: 112.5%;
+  }
 }
 
 strong, b { font-weight: 400; }
@@ -31,25 +35,22 @@ a, a:visited {
   }
 }
 
-.bgds {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-}
-
 .info {
   margin: 0 auto;
-  padding: 2em;
-}
+  padding: 2em 1em;
 
-.info article {
-  margin: 0 auto 1.5em;
-  max-width: 36em;
+  @media #{$break-small} {
+    padding: 3em;
+  }
 
-  p {
-    margin: 0 0 1em 0;
-    max-width: 45em;
+  article {
+    margin: 0 auto;
+    max-width: 36em;
+
+    p {
+      margin: 0 0 1em 0;
+      max-width: 45em;
+    }
   }
 }
 
@@ -74,6 +75,17 @@ a, a:visited {
     text-align: center;
     margin-bottom: 1em;
 
+    @media #{$break-small} {
+      display: inline-block;
+      margin: 0 1em 0 0;
+    }
+
+    &:last-child {
+      @media #{$break-small} {
+        margin-right: 0;
+      }
+    }
+
     a {
       display: inline-block;
       padding: .2em 1em;
@@ -92,18 +104,34 @@ a, a:visited {
   }
 }
 
-.bar {
+.bgds {
   position: absolute;
-  height: 117px;
   width: 100%;
+  height: 100%;
+  z-index: -1;
 
-  &.barOne { background: rgba(255,127,127,.08); }
-  &.barTwo { background: rgba(127,255,127,.08); }
-  &.barThree { background: rgba(127,127,255,.08); }
+  .bar {
+    position: absolute;
+    height: 114px;
+    width: 100%;
 
-  &.down20Ani { animation: down 20s infinite cubic-bezier(1,0,1,0); }
-  &.down30Ani { animation: down 30s infinite cubic-bezier(1,0,1,0); }
-  &.down40Ani { animation: down 40s infinite cubic-bezier(1,0,1,0); }
+    &.barOne {
+      background: rgba(255,127,127,.08);
+      animation: down 20s infinite $slow-in-fast-out;
+    }
+    &.barTwo {
+      background: rgba(127,255,127,.08);
+      animation: down 30s infinite $slow-in-fast-out;
+    }
+    &.barThree {
+      background: rgba(127,127,255,.08);
+      animation: down 40s infinite $slow-in-fast-out;
+    }
+
+    @media #{$break-small} {
+      height: 138px;
+    }
+  }
 }
 
 @keyframes down {
@@ -111,24 +139,4 @@ a, a:visited {
   5% { transform: translate3d(0,0,0); opacity: 1; }
   15% { transform: translate3d(0,0,0); opacity: 1; }
   to { transform: translate3d(0,1500px,0); opacity: 0; }
-}
-
-@media screen and ( min-width: $breakPhone ) {
-
-  body { font-size: 1.125em; }
-
-  .info {
-    margin: 0 auto;
-    padding: 4em;
-  }
-
-  ul.links li {
-    display: inline-block;
-    margin: 0 1em 0 0;
-
-    &:last-child { margin-right: 0; }
-  }
-
-  .bar { height: 157px; }
-
 }
