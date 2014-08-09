@@ -116,7 +116,7 @@ a, a:visited {
 
   .bar {
     position: absolute;
-    height: 114px;
+    height: 117px;
     width: 100%;
 
     &.barOne {
@@ -133,7 +133,7 @@ a, a:visited {
     }
 
     @media #{$break-576} {
-      height: 138px;
+      height: 139px;
     }
   }
 }
