@@ -55,5 +55,5 @@ gulp.task 'browser-sync', ->
       baseDir: path.www
 
 gulp.task 'default', ['init', 'html', 'sass', 'img', 'browser-sync'], ->
-  gulp.watch path.sass, ['sass']
+  gulp.watch ['./src/sass/*.scss', './src/scss/**/*.scss'], ['sass']
   gulp.watch path.srcHTML, ['html']
