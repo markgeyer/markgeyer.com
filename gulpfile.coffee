@@ -1,59 +1,48 @@
 gulp = require 'gulp'
-fs = require 'fs'
-minifycss = require 'gulp-minify-css'
-autoprefixer = require 'gulp-autoprefixer'
 sass = require 'gulp-sass'
+autoprefixer = require 'gulp-autoprefixer'
+minify = require 'gulp-minify-css'
 concat = require 'gulp-concat'
+del = require 'del'
 browserSync = require 'browser-sync'
-rimraf = require 'gulp-rimraf'
+reload = browserSync.reload
 
-path =
-  sass: './src/sass/*.scss'
-  css:  './www/css'
-  srcIMG: './src/img/*'
-  img:  './www/img'
-  srcJS:  './src/js/**/*.js'
-  js:  './www/js'
-  srcHTML: './src/*.html'
-  www: './www'
+paths =
+  npm: './node_modules'
+  src: './src'
+  output: './www'
 
-gulp.task 'init', ->
-  fs.mkdirSync path.www unless fs.existsSync(path.www)
-  fs.mkdirSync path.css unless fs.existsSync(path.css)
-  fs.mkdirSync path.js unless fs.existsSync(path.js)
-  gulp.src(path.srcIMG).pipe gulp.dest(path.img)
+gulp.task 'clean', (cb) ->
+  del paths.output, cb
 
-gulp.task 'clean', ->
-  gulp.src(path.www, read: false)
-  .pipe rimraf()
-
-gulp.task 'html', ->
-  gulp.src(path.srcHTML)
-  .pipe gulp.dest(path.www)
-  .pipe browserSync.reload(stream: true)
+gulp.task 'index', ->
+  gulp.src(paths.src + '/*.html')
+    .pipe gulp.dest(paths.output)
+    .pipe reload(stream: true)
 
 gulp.task 'sass', ->
   gulp.src([
-    './node_modules/normalize.css/normalize.css'
-    './src/sass/*.scss'
+    paths.npm + '/normalize.css/normalize.css'
+    paths.src + '/scss/*.scss'
   ])
-  .pipe sass()
-  .pipe autoprefixer('last 1 version', '> 1%', 'ie 10', 'iOS 7', 'Android 4', cascade: true)
+  .pipe sass(errLogToConsole: true)
+  .pipe autoprefixer()
+  .pipe minify(keepSpecialComments: 0)
   .pipe concat('style.css')
-  .pipe minifycss()
-  .pipe gulp.dest(path.css)
-  .pipe browserSync.reload(stream: true)
+  .pipe gulp.dest(paths.output + '/css')
+  .pipe reload(stream: true)
 
 gulp.task 'img', ->
-  gulp.src(path.srcIMG)
-  .pipe gulp.dest(path.img)
-  .pipe browserSync.reload(stream: true)
+  gulp.src(paths.src + '/img/**')
+  .pipe gulp.dest(paths.output + '/img')
+  .pipe reload(stream: true)
 
 gulp.task 'browser-sync', ->
-  browserSync.init null,
+  browserSync
+    open: false
     server:
-      baseDir: path.www
+      baseDir: paths.output
 
-gulp.task 'default', ['init', 'html', 'sass', 'img', 'browser-sync'], ->
-  gulp.watch ['./src/sass/*.scss', './src/scss/**/*.scss'], ['sass']
-  gulp.watch path.srcHTML, ['html']
+gulp.task 'default', ['index', 'sass', 'img', 'browser-sync'], ->
+  gulp.watch paths.src + '/scss/**/*.scss', ['sass']
+  gulp.watch paths.src + '*.html', ['index']
