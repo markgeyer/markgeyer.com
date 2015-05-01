@@ -20,23 +20,33 @@ body {
 
 strong, b { font-weight: 400; }
 
-h1, h2, h3, h4 {
+h1,
+h2,
+h3,
+h4 {
   font-weight: 300;
   color: #3d3d3d;
 }
 
-h1, h2, h3, h4 { text-align: center; }
+h1,
+h2,
+h3,
+h4 { text-align: center; }
 
 h1 { margin: 0; }
 
 h2 {
-  font-weight: 100;
   margin: 0 0 1em;
+  font-weight: 100;
 }
 
-h4 { font-weight: 400; }
+h4 {
+  margin: 0;
+  font-weight: 400;
+}
 
-a, a:visited {
+a,
+a:visited {
   color: #2A94D6;
   text-decoration: none;
   font-weight: 400;
