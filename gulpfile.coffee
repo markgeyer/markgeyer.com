@@ -17,8 +17,8 @@ gulp.task 'clean', (cb) ->
 
 gulp.task 'index', ->
   gulp.src(paths.src + '/*.html')
-    .pipe gulp.dest(paths.output)
-    .pipe reload(stream: true)
+  .pipe gulp.dest(paths.output)
+  .pipe reload(stream: true)
 
 gulp.task 'sass', ->
   gulp.src([
@@ -45,4 +45,4 @@ gulp.task 'browser-sync', ->
 
 gulp.task 'default', ['index', 'sass', 'img', 'browser-sync'], ->
   gulp.watch paths.src + '/scss/**/*.scss', ['sass']
-  gulp.watch paths.src + '*.html', ['index']
+  gulp.watch paths.src + '/*.html', ['index']
